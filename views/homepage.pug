@@ -1,0 +1,25 @@
+doctype html
+html
+    head
+        title= title
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        h1 Companies
+        p
+            a(href="/update-cobj") Add a company
+        table
+            thead
+                tr
+                    th Name
+                    th Publisher
+                    th Price
+            tbody
+                each company in data
+                    tr
+                        td= company.properties.name
+                        td= company.properties.publisher
+                        td= company.properties.price
+                else
+                    tr
+                        td(colspan="3") No companies yet.
