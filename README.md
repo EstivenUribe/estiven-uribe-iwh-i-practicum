@@ -6,7 +6,18 @@ Practicum completed by Estiven Uribe.
 
 To read the full directions, please go to the [practicum instructions](https://app.hubspot.com/academy/l/tracks/1092124/1093824/5493?language=en).
 
-**Put your HubSpot developer test account custom objects URL link here:** https://app.hubspot.com/contacts/l/objects/${custom-obj-number}/views/all/list
+**Put your HubSpot developer test account custom objects URL link here:** https://app.hubspot.com/contacts/52291690/objects/0-2/views/all/list
+
+### Notes on my implementation
+- **Standard object instead of a custom object:** my account does not have access to custom objects (they require an Enterprise subscription). The practicum allows this: *"If you don't have access to custom objects, you may use a standard object (contact, company, deal, etc.) to complete this practicum."* I use the standard **Companies** object (`/crm/v3/objects/companies`, object type `0-2`) with three properties: `name` (default), plus `publisher` (single-line text) and `price` (number), which I created as custom company properties.
+- **Authentication:** the app authenticates with a HubSpot **service key**, sent as `Authorization: Bearer <token>`. The key is never committed: it is read from the `HUBSPOT_TOKEN` variable in a git-ignored `.env` file.
+
+### Running locally
+1. `npm install`
+2. Create a `.env` file with `HUBSPOT_TOKEN=<your service key>`
+3. `npm start` and open http://localhost:3000
+   - `/` lists the companies with name, publisher and price.
+   - `/update-cobj` shows the form that creates a new company and redirects back to the homepage.
 
 ___
 ## Tips:
