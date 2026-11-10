@@ -1,0 +1,23 @@
+doctype html
+html
+    head
+        title= title
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        h1 Update Custom Object Form
+        .form-wrapper
+            if errors.length
+                ul.alert.alert--error
+                    each message in errors
+                        li= message
+            form(method="POST", action="/update-cobj")
+                label(for="name") Name *
+                input(type="text", id="name", name="name", value=values.name, required)
+                label(for="publisher") Publisher
+                input(type="text", id="publisher", name="publisher", value=values.publisher)
+                label(for="price") Price
+                input(type="number", id="price", name="price", value=values.price, step="0.01", min="0")
+                input(type="submit", value="Submit")
+            p
+                a(href="/") Return to the homepage

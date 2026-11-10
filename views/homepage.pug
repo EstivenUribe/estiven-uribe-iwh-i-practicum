@@ -1,0 +1,32 @@
+doctype html
+html
+    head
+        title= title
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        h1 Companies
+        .page
+            if error
+                p.alert.alert--error= error
+            else if createdId
+                p.alert.alert--success Company #{createdId} created in HubSpot.
+            p.actions
+                a.button(href="/update-cobj") Add a company
+                span.count #{data.length} #{data.length === 1 ? 'company' : 'companies'}
+            .table-wrapper
+                table.companies
+                    thead
+                        tr
+                            th Name
+                            th Publisher
+                            th.num Price
+                    tbody
+                        each company in data
+                            tr(class=company.id === createdId ? 'is-new' : undefined)
+                                td= company.properties.name
+                                td= company.properties.publisher || '—'
+                                td.num= company.properties.price || '—'
+                        else
+                            tr
+                                td(colspan="3") No companies yet.
